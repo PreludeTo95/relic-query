@@ -14,6 +14,9 @@ COPY package-lock.json* ./
 # Install dependencies
 RUN npm install
 
+# Copy source code into the container
+COPY . .
+
 # Set environment variable
 ENV NODE_ENV=development
 
