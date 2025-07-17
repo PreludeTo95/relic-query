@@ -1,0 +1,24 @@
+# Step 1: Install dependencies
+
+# Use Alpine Linux as base image
+FROM node:18-alpine
+
+# Set the working directory
+WORKDIR /app
+
+# Copy dependency lists
+# asterisk prevents failure if package-lock is missing
+COPY package.json ./
+COPY package-lock.json* ./ 
+
+# Install dependencies
+RUN npm install
+
+# Set environment variable
+ENV NODE_ENV=development
+
+# Application port
+EXPOSE 3000
+
+# Start the app
+CMD ["npm", "run", "dev"]
