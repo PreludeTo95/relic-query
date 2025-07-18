@@ -1,0 +1,27 @@
+version: '3.9'
+
+services:
+  app-prod:
+    build:
+      context: .
+      dockerfile: dockerfile.dev
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=production
+      - MONGODB_URI=mongodb://mongo-prod:27017/relic-query
+    depends_on:
+      - mongo-prod
+
+  mongo-prod:
+    image: mongo:7.0
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo-prod-data:/data/db
+
+volumes:
+  mongo-prod-data:

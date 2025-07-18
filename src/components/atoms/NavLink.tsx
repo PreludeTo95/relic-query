@@ -6,7 +6,6 @@ type NavLinkProps = {
 };
 
 export default function NavLink({ href, label }: NavLinkProps) {
-
   return (
     <Link href={href} className="hover:underline">
       {label}
