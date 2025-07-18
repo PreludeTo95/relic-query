@@ -1,1 +1,6 @@
-export const RELIC_ERAS = ['lith', 'meso', 'neo', 'axi'] as const;
+export const RELIC_ERAS = {
+  LITH: 'lith',
+  MESO: 'meso',
+  NEO: 'neo',
+  AXI: 'axi',
+} as const;

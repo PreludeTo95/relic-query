@@ -1,6 +1,6 @@
-export const RELIC_REFINEMENT_LEVELS = [
-  'intact',
-  'exceptional',
-  'flawless',
-  'radiant',
-] as const;
+export const RELIC_REFINEMENT_LEVELS = {
+  INTACT: 'intact',
+  EXCEPTIONAL: 'exceptional',
+  FLAWLESS: 'flawless',
+  RADAINT: 'radiant',
+} as const;

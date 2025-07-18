@@ -1,29 +1,35 @@
 import mongoose from 'mongoose';
-import DropSchema from './helpers/DropSchema';
+import ItemDropSchema from './ItemDrop';
 import { RELIC_ERAS } from '../constants/RelicEras';
 import { RELIC_REFINEMENT_LEVELS } from '../constants/RelicRefinementLevels';
 
-const VoidRelicSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
+const VoidRelicSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+    },
+    era: {
+      type: String,
+      enum: Object.values(RELIC_ERAS),
+    },
+    isVaulted: {
+      type: Boolean,
+    },
+    refinementLevel: {
+      type: String,
+      enum: Object.values(RELIC_REFINEMENT_LEVELS),
+    },
+    itemDrops: {
+      type: [ItemDropSchema],
+      required: true,
+    },
   },
-  era: {
-    type: String,
-    enum: RELIC_ERAS,
+  {
+    strict: true,
   },
-  isVaulted: {
-    type: Boolean,
-  },
-  refinementLevel: {
-    type: String,
-    enum: RELIC_REFINEMENT_LEVELS,
-  },
-  itemDrops: {
-    type: DropSchema,
-  },
-});
+);
 
 // Avoid re-registering model during hot reloads
 export default mongoose.models.VoidRelic ||
-  mongoose.model('VoidRelic', VoidRelicSchema);
+  mongoose.model('void_relic', VoidRelicSchema);
